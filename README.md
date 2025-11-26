@@ -1,9 +1,3 @@
-/**
- * Example Next.js 15 template project.
- * This repository is for demonstration and educational purposes only.
- * Feel free to use, modify, or extend for your own projects.
- */
-
 # Next.js Starter Template
 
 A production-ready Next.js 15 starter template with authentication, form handling, and a scalable architecture.
