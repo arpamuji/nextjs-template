@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+coverage/
+public/
+package-lock.json
+yarn.lock
+.git/
+.github/
+.vscode/
+.idea/
+.DS_Store
+.env*
+.next/
+.superdesign/
+*.min.js
+*.min.css
