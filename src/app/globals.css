@@ -1,3 +1,21 @@
+/**
+ * Example Global Styles
+ * 
+ * This file demonstrates how to set up global styles with Tailwind CSS 4.
+ * 
+ * In a real-world application, you should:
+ * - Customize the color palette to match your brand
+ * - Adjust border radius and spacing values
+ * - Add custom fonts and typography styles
+ * - Configure dark mode colors appropriately
+ * - Add custom CSS variables for reusable values
+ * - Define custom utility classes if needed
+ * - Optimize for accessibility (color contrast ratios)
+ * - Add print styles if needed
+ * 
+ * Modify these styles based on your project's specific design requirements.
+ */
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 

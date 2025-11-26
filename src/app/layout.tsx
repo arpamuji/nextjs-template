@@ -1,5 +1,25 @@
+/**
+ * Example Root Layout Component
+ * 
+ * This is a demonstration implementation of the Next.js root layout.
+ * 
+ * In a real-world application, you should:
+ * - Customize metadata (title, description, Open Graph tags)
+ * - Add analytics and tracking scripts
+ * - Configure fonts based on your brand
+ * - Add theme providers (dark mode support)
+ * - Include global error boundaries
+ * - Add SEO optimization (structured data, favicons)
+ * - Configure viewport and mobile settings
+ * - Add global providers as needed
+ * 
+ * Modify this layout based on your project's specific requirements.
+ */
+
+import ReactQueryProvider from '@/providers/react-query-provider';
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
+import { Toaster } from 'sonner';
 
 import './globals.css';
 
@@ -21,9 +41,12 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${manrope.variable} antialiased`}>
-                <main className="flex min-h-screen flex-col items-center justify-center gap-y-16 p-24">
-                    {children}
-                </main>
+                <ReactQueryProvider>
+                    <main className="flex min-h-screen flex-col items-center justify-center gap-y-16 p-4 lg:p-8 xl:p-24">
+                        {children}
+                    </main>
+                </ReactQueryProvider>
+                <Toaster position="bottom-right" />
             </body>
         </html>
     );
