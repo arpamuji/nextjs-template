@@ -1,21 +1,18 @@
-import Link from '@/components/custom/link';
-import { Fragment } from 'react';
+/**
+ * Example Home Route
+ * 
+ * This is a demonstration implementation of the home page route.
+ * 
+ * In a real-world application, you should:
+ * - Replace with your actual landing page implementation
+ * - Add proper SEO metadata (title, description, Open Graph)
+ * - Implement dynamic content based on user state
+ * - Add structured data for search engines
+ * - Optimize for Core Web Vitals
+ * 
+ * Modify or replace this route based on your project's specific requirements.
+ */
 
-export default function Home() {
-    return (
-        <Fragment>
-            <div>
-                <h1 className="text-fun-blue-600 text-4xl font-medium">
-                    This is Next JS Template.
-                </h1>
-                <p className="text-center text-sm text-gray-500">
-                    Welcome to Next JS Template, get started by editing this page!
-                </p>
-            </div>
-            <div className="text-fun-blue-500 flex flex-row items-center justify-between gap-x-16">
-                <Link href="/auth">Login</Link>
-                <Link href="/auth">Register</Link>
-            </div>
-        </Fragment>
-    );
-}
+import HomePage from '@/modules/home/home-page';
+
+export default HomePage;
