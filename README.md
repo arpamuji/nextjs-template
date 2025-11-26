@@ -4,7 +4,7 @@ A production-ready Next.js 15 starter template with authentication, form handlin
 
 ## 🚀 Features
 
-- ⚡ **Next.js 15** with App Router and Turbopack
+- ⚡ **Next.js 15.5** with App Router and Turbopack
 - 🔐 **Authentication** - Cookie-based auth with protected routes
 - 📝 **Form Handling** - TanStack Form + Zod validation
 - 🎨 **UI Components** - shadcn/ui + Tailwind CSS 4
@@ -13,24 +13,26 @@ A production-ready Next.js 15 starter template with authentication, form handlin
 - 🪝 **Custom Hooks** - Reusable logic patterns
 - 📱 **Responsive** - Mobile-first design
 - 🌙 **Toast Notifications** - Sonner for user feedback
+- 🎨 **Theme Support** - Next Themes for dark/light mode
 
 ## 📦 Tech Stack
 
-- **Framework:** Next.js 15.5
+- **Framework:** Next.js 15.5.6
 - **Language:** TypeScript 5
-- **Styling:** Tailwind CSS 4
+- **Styling:** Tailwind CSS 4 + tw-animate-css
 - **UI Library:** Radix UI + shadcn/ui
-- **Forms:** TanStack Form + Zod
-- **Data Fetching:** TanStack Query + Axios
-- **State Management:** Zustand
+- **Forms:** TanStack Form 1.23 + Zod 4.1
+- **Data Fetching:** TanStack Query 5.90 + Axios 1.13
+- **State Management:** Zustand 5.0
 - **Icons:** Lucide React
-- **Fonts:** Manrope (Google Fonts)
+- **Notifications:** Sonner 2.0
 
 ## 🏁 Getting Started
 
 ### Prerequisites
 
-- Node.js 22+ and pnpm (or npm/yarn/bun)
+- Node.js 20+ and pnpm (or npm/yarn/bun)
+- Docker (optional, for containerized deployment)
 
 ### Installation
 
@@ -68,31 +70,83 @@ nextjs-template/
 │   ├── app/                    # Next.js App Router (routes & API)
 │   │   ├── page.tsx           # Home page (/)
 │   │   ├── layout.tsx         # Root layout
+│   │   ├── globals.css        # Global styles
+│   │   ├── favicon.ico        # App favicon
 │   │   ├── auth/              # Auth routes (/auth/*)
+│   │   │   ├── page.tsx       # Auth wrapper page
+│   │   │   ├── login/         # Login page
+│   │   │   └── register/      # Register page
 │   │   ├── user/              # Protected routes (/user/*)
+│   │   │   └── page.tsx       # User dashboard
 │   │   └── api/               # API endpoints
 │   │       └── auth/          # Auth API routes
+│   │           ├── login/     # POST /api/auth/login
+│   │           ├── register/  # POST /api/auth/register
+│   │           ├── logout/    # POST /api/auth/logout
+│   │           └── me/        # GET /api/auth/me
 │   ├── modules/                # Feature modules
-│   │   ├── auth/              # Auth feature (login, register)
+│   │   ├── auth/              # Auth feature
+│   │   │   ├── auth-page.tsx  # Auth layout component
+│   │   │   └── _components/   # Private auth components
+│   │   │       ├── login-form.tsx
+│   │   │       └── register-form.tsx
 │   │   ├── home/              # Home page feature
+│   │   │   └── home-page.tsx
 │   │   └── user/              # User dashboard feature
+│   │       └── dashboard-page.tsx
 │   ├── components/             # Reusable UI components
 │   │   ├── ui/                # shadcn/ui base components
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── field.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── input-group.tsx
+│   │   │   ├── label.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── sonner.tsx
+│   │   │   ├── tabs.tsx
+│   │   │   └── textarea.tsx
 │   │   └── custom/            # Custom components
+│   │       └── link.tsx
 │   ├── hooks/                  # Custom React hooks
+│   │   ├── index.ts           # Hooks barrel export
+│   │   └── use-toggle.ts      # Toggle hook
 │   ├── services/               # API service layer (TanStack Query)
 │   │   ├── auth-queries.ts    # Read operations (GET)
 │   │   └── auth-mutations.ts  # Write operations (POST/PUT/DELETE)
 │   ├── schemas/                # Zod validation schemas
+│   │   └── auth.schema.ts     # Auth form schemas
 │   ├── types/                  # TypeScript type definitions
+│   │   └── auth.type.ts       # Auth types
 │   ├── enums/                  # TypeScript enums
+│   │   └── user-role.enum.ts  # User role enum
 │   ├── store/                  # Zustand stores for client state
+│   │   ├── index.ts           # Store barrel export
+│   │   └── counter.store.ts   # Example counter store
 │   ├── lib/                    # Utilities and configured libraries
+│   │   ├── axios.ts           # Axios instance config
+│   │   └── utils.ts           # Utility functions (cn, etc.)
 │   ├── providers/              # React context providers
+│   │   └── react-query-provider.tsx
 │   └── middleware.ts           # Next.js middleware (auth protection)
 ├── public/                     # Static assets
-└── ...config files
+└── ...config files             # See below for details
 ```
+
+### ⚙️ Configuration Files
+
+| File | Purpose |
+|------|--------|
+| `next.config.ts` | Next.js configuration |
+| `tsconfig.json` | TypeScript configuration |
+| `tailwind.config.ts` | Tailwind CSS configuration |
+| `postcss.config.mjs` | PostCSS configuration |
+| `eslint.config.mjs` | ESLint configuration |
+| `.prettierrc` | Prettier code formatting |
+| `components.json` | shadcn/ui configuration |
+| `dockerfile` | Docker image definition |
+| `docker-compose.yml` | Docker Compose setup |
+| `.env.example` | Environment variables template |
 
 ### 📂 Folder Purposes
 
@@ -120,10 +174,12 @@ nextjs-template/
 
 ```bash
 pnpm dev          # Start development server with Turbopack
-pnpm build        # Build for production
+pnpm build        # Build for production with Turbopack
 pnpm start        # Start production server
 pnpm lint         # Run ESLint
 ```
+
+> **Note:** This template uses Turbopack for both development and production builds for faster performance.
 
 ## 🔑 Authentication Flow
 
